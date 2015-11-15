@@ -1,0 +1,13 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Kiinteistöpalvelufirman_sovellus.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Tietokanta" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;server=mysql.labranet.jamk.fi;user id=I0233;password=7W43yErQtWeBp6esHBBfAUUxzDtanXcm;persistsecurityinfo=True;database=I0233&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">server=mysql.labranet.jamk.fi;user id=I0233;password=7W43yErQtWeBp6esHBBfAUUxzDtanXcm;persistsecurityinfo=True;database=I0233</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

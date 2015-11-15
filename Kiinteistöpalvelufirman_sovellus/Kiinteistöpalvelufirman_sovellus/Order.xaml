@@ -1,0 +1,79 @@
+﻿<Window x:Class="Kiinteistöpalvelufirman_sovellus.Order"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tilauslomake" Height="Auto" Width="Auto"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
+        Icon="Images/order-icon.jpg">
+
+  <Window.Background>
+    <ImageBrush ImageSource="images\login_tausta.jpg"/>
+  </Window.Background>
+
+  <Window.Resources>
+    <Style x:Key="NoChromeButton" TargetType="{x:Type Button}">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="Padding" Value="1"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid x:Name="Chrome" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="#ADADAD"/>
+                <Setter Property="Opacity" TargetName="Chrome" Value="0.5"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </Window.Resources>
+  <Grid x:Name="LayoutRoot" Width="696" Height="520">
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="15,89,0,0" Name="textBlockHeading" Text="Palvelun tilaus" VerticalAlignment="Top" Width="141"  FontSize="20" FontStretch="ExtraCondensed" FontWeight="Bold"/>
+    <Button Style="{DynamicResource NoChromeButton}" Click="Edit_Click" Margin="10,5,615,473" Height="42" RenderTransformOrigin="-0.095,1.286" ToolTip="Klikkaamalla kuvaan pääset muokkamaan omia tietojasi" Cursor="Hand">
+      <Image x:Name="user_icon" Source="Images/gender-man.png"/>
+    </Button>
+    <TextBlock x:Name="user_name" Height="23" VerticalAlignment="Top"  FontSize="13" FontStretch="ExtraCondensed" Margin="10,47,546,0">xxxx</TextBlock>
+    <Button Style="{DynamicResource NoChromeButton}" Click="Logout_Click" Margin="645,5,20,467" RenderTransformOrigin="-0.095,1.286" ToolTip="Kirjaudu ulos" Cursor="Hand">
+      <Image  Source="Images/logout-icon.png" Height="27" Width="25" RenderTransformOrigin="1.6,0.333"/>
+    </Button>
+    <TextBlock Height="23" VerticalAlignment="Top" FontSize="13" Margin="618,47,0,0" RenderTransformOrigin="1.4,0.391">Kirjaudu Ulos</TextBlock>
+    <TextBox x:Name="new_user_info" Margin="15,129,37,215" VerticalAlignment="Stretch" Focusable="False" FontFamily="Arial" BorderThickness="2" Background="White" BorderBrush="Black" TextAlignment="Left" FontSize="13" Text="Tervetuloa kiinteistöhuoltofirman Oy sovellukseen!&#10;&#10;Tilaa meidän palvelujamme täyttämällä alla olevaa lomaketta. Tilaamasi käsittely aika on useimiten 1-2 päivää. &#10;Kaikki kentät ovat pakollisia.&#10;&#10; Ystävällisin terveisin,&#10; Kiinteitöhuoltofirma Oy"  Panel.ZIndex="1" Visibility="Hidden"/>
+    <Button x:Name="Ok_btn" Margin="298,246,348,234" Content="OK" Click="Ok_btn_Click" Background="Transparent" Panel.ZIndex="1"  Cursor="Hand" Visibility="Hidden"/>
+    <Border Background="WhiteSmoke" BorderBrush="Gainsboro" BorderThickness="1" Margin="15,112,88,37">
+      <Grid Height="282" HorizontalAlignment="Left" Margin="9,9,0,0" Name="grid1" VerticalAlignment="Top" Width="573">
+        <TextBlock Height="23" HorizontalAlignment="Left" Name="header2" Text="Täytä alla olevaa lomaketta rekisteröidäksesi palvelun käyttäjäksi." VerticalAlignment="Top" Width="486"  FontSize="10" FontStretch="ExtraCondensed" Margin="10,10,0,0"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,38,0,0"  Text="Tilauksen päivämäärä" VerticalAlignment="Top" Width="135" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,66,0,0"  Text="Käyntiosoite" VerticalAlignment="Top" Width="110"  />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,94,0,0"  Text="Postinumero ja toimipaikka" VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,122,0,0"  Text="Laskutusosoite" VerticalAlignment="Top" Width="110"  />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,150,0,0"  Text="Asunnon tyyppi" VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,178,0,0"  Text="Palvelu" VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,206,0,0"  Text="Vapaamuotoinen kommentti" VerticalAlignment="Top" Width="165" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="181,89,0,0" x:Name="txtFName" VerticalAlignment="Top" Width="222" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="180,61,0,0" x:Name="txtEmail_Copy" VerticalAlignment="Top" Width="222" />
+        <TextBox HorizontalAlignment="Left" Margin="181,117,0,142" x:Name="txtFName_Copy" Width="222" RenderTransformOrigin="0.459,3.109" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="181,33,0,0" x:Name="txtpvm" VerticalAlignment="Top" Width="222" IsReadOnly="True" />
+        <Image Source="Images/calender-icon.png" Margin="382,34,170,226"/>
+        <TextBox Height="66" HorizontalAlignment="Left" Margin="180,206,0,0" x:Name="txtFName_Copy2" VerticalAlignment="Top" Width="222" RenderTransformOrigin="0.459,3.109" />
+        <RadioButton Content="Kerrostalo" HorizontalAlignment="Left" Margin="181,154,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Omakotitalo" HorizontalAlignment="Left" Margin="268,154,0,0" VerticalAlignment="Top" Width="95"/>
+        <RadioButton Content="Rivitalo" HorizontalAlignment="Left" Margin="368,154,0,0" VerticalAlignment="Top" Width="78"/>
+        <RadioButton Content="Paritalo" Margin="446,154,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.788,1.167" HorizontalAlignment="Left" Width="84"/>
+        <ComboBox x:Name="cmb_palvelut" Loaded="cmb_palvelut_Loaded" HorizontalAlignment="Left" Width="242" Margin="181,178,0,81" RenderTransformOrigin="0.554,-0.31" />
+        <Button Content="Vahvista" HorizontalAlignment="Left" x:Name="Submit" Width="70" Click="Submit_Click" Cursor="Hand" Margin="498,284,0,-25" />
+        <Button Content="Tyhjennä kentät" Height="24" HorizontalAlignment="Left" x:Name="Rest" VerticalAlignment="Top" Width="106" Click="Rest_Click" Cursor="Hand" Margin="368,284,0,-26" RenderTransformOrigin="0.491,0.739" />
+        <TextBlock Height="42" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="508" Margin="-10,307,0,-67"  OpacityMask="Crimson" Foreground="#FFE5572C" TextWrapping="Wrap" />
+        <TextBlock Height="42" HorizontalAlignment="Left" x:Name ="successmessage" VerticalAlignment="Top" Width="508" Margin="-10,308,0,-68"  OpacityMask="Crimson" Foreground="Green" TextWrapping="Wrap" />
+      </Grid>
+    </Border>
+  </Grid>
+
+</Window>

@@ -1,0 +1,41 @@
+﻿<Window x:Class="Kiinteistöpalvelufirman_sovellus.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Rekisteröitymislomake" Height="Auto" Width="Auto"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
+        Icon="Images/sign-up.png">
+  <Window.Background>
+    <ImageBrush ImageSource="images\login_tausta.jpg"/>
+  </Window.Background>
+
+  <Grid Width="696" Height="420">
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="30,10,0,0" Name="textBlockHeading" Text="Rekisteröityminen" VerticalAlignment="Top" Width="153"  FontSize="17" FontStretch="ExtraCondensed" FontWeight="Bold"/>
+    <TextBlock Height="23" HorizontalAlignment="Left" Name="header2" Text="Täytä alla olevaa lomaketta rekisteröidäksesi palvelun käyttäjäksi." VerticalAlignment="Top" Width="486"  FontSize="10" FontStretch="ExtraCondensed" Margin="32,42,0,0"/>
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="86,79,0,0" x:Name="textBlockFirstname" Text="Sähköpostiosoite" VerticalAlignment="Top" Width="110" />
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="86,107,0,0" x:Name="textBlockLastName" VerticalAlignment="Top" Width="110" Text="Etunimi" />
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="86,135,0,0" x:Name="textBlockEmailId" Text="Sukunimi" VerticalAlignment="Top" Width="110" />
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="86,163,0,0" x:Name="textBlockPassword" Text="Salasana" VerticalAlignment="Top" Width="110"  />
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="86,191,0,0" x:Name="textBlockConfirmPwd" Text="Vahvista salasana" VerticalAlignment="Top" Width="110" />
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="86,219,0,0" x:Name="textBlockAddress" Text="Puhelinnumero" VerticalAlignment="Top" Width="110" />
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="86,283,0,0" x:Name="txtBlockGender" Text="Valitse sukupuoli" VerticalAlignment="Top" Width="110" />
+    <TextBox Height="23" HorizontalAlignment="Left" Margin="217,79,0,0" x:Name="txtEmail" VerticalAlignment="Top" Width="222" />
+    <TextBox Height="23" HorizontalAlignment="Left" Margin="217,107,0,0" x:Name="txtFName" VerticalAlignment="Top" Width="222" />
+    <TextBox Height="23" HorizontalAlignment="Left" Margin="217,135,0,0" x:Name="txtLName" VerticalAlignment="Top" Width="222" />
+    <PasswordBox Height="23" HorizontalAlignment="Left" Margin="217,163,0,0" x:Name="txtPassword" VerticalAlignment="Top" Width="222" />
+    <PasswordBox Height="23" HorizontalAlignment="Left" Margin="217,191,0,0" x:Name="txtPasswordConfirm" VerticalAlignment="Top" Width="222" />
+    <TextBox Height="23" HorizontalAlignment="Left" Margin="217,0,0,178" x:Name="txtPhonenumber" VerticalAlignment="Bottom" Width="222" />
+    <Button Content="Vahvista" Height="23" HorizontalAlignment="Left" Margin="579,294,0,0" x:Name="Submit" VerticalAlignment="Top" Width="70" Click="Submit_Click" Cursor="Hand" />
+    <Button Content="Tyhjennä kentät" Height="23" HorizontalAlignment="Left" Margin="579,330,0,0" x:Name="Rest" VerticalAlignment="Top" Width="107" Click="Rest_Click" Cursor="Hand" />
+    <Button Content="Peruuta" Height="23" Margin="579,36,0,0" x:Name="Cancel" VerticalAlignment="Top" Click="Cancel_Click" Cursor="Hand" HorizontalAlignment="Left" Width="70" RenderTransformOrigin="1.1,0.522" />
+    <TextBlock Height="42" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="508" Margin="32,355,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C" TextWrapping="Wrap" />
+    <TextBlock Height="42" HorizontalAlignment="Left" x:Name ="successmessage" VerticalAlignment="Top" Width="508" Margin="32,355,0,0"  OpacityMask="Crimson" Foreground="Green" TextWrapping="Wrap" />
+    <Button Content="Kirjaudu sisään" Height="23" HorizontalAlignment="Right" Margin="0,374,27,0" x:Name="login_btn" VerticalAlignment="Top" Width="90" Click="login_click"  Cursor="Hand" Visibility="Hidden"/>
+    <RadioButton Content="" HorizontalAlignment="Left" Margin="239,332,0,0" VerticalAlignment="Top" x:Name="gn_man" RenderTransformOrigin="0.684,1.333" GroupName="radio_btn"/>
+    <RadioButton Content="" HorizontalAlignment="Left" Margin="385,332,0,0" VerticalAlignment="Top" x:Name="gn_woman" RenderTransformOrigin="0.684,1.333" GroupName="radio_btn"/>
+    <TextBlock Text="Mies" VerticalAlignment="Center" Margin="234,311,438,93" />
+    <Image Source="Images/gender-man.png" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="12.5,5.25" Margin="228,256,0,112"/>
+    <Image Source="Images/gender-woman.png" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="12.5,5.25" Margin="372,254,0,114"/>
+    <TextBlock Text="Nainen" VerticalAlignment="Center" Margin="372,311,277,93" />
+  </Grid>
+</Window>
