@@ -78,8 +78,8 @@ namespace Kiinteistöpalvelufirman_sovellus
                     try
                     {
                         conn.Open();
-                        MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM Asiakkaat WHERE sähköposti='" + txtUserName.Text + "' AND salasana='" + txtPassword.Password +"'",conn);
-                        MySqlCommand cmd2 = new MySqlCommand("SELECT * FROM Asiakkaat WHERE sähköposti='" + txtUserName.Text + "' AND salasana='" + txtPassword.Password + "'", conn);
+                        MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM Asiakkaat WHERE sahkoposti='" + txtUserName.Text + "' AND salasana='" + txtPassword.Password +"'",conn);
+                        MySqlCommand cmd2 = new MySqlCommand("SELECT * FROM Asiakkaat WHERE sahkoposti='" + txtUserName.Text + "' AND salasana='" + txtPassword.Password + "'", conn);
                         int count = Convert.ToInt32(cmd.ExecuteScalar());
                         cmd2.CommandType = CommandType.Text;
                         MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -91,9 +91,10 @@ namespace Kiinteistöpalvelufirman_sovellus
                             errormessage.Text = "Tämä käyttäjä ei löytynyt tietokannastamme. Ole hyvä ja rekisteröidy käyttäjäksi.";
                         } else {
                             Application.Current.Properties["Logged_username"] = dataSet.Tables[0].Rows[0]["etunimi"].ToString() + " " + dataSet.Tables[0].Rows[0]["sukunimi"].ToString();
+                            Application.Current.Properties["user_email"] = dataSet.Tables[0].Rows[0]["sahkoposti"].ToString();
                             Application.Current.Properties["Gender"] = dataSet.Tables[0].Rows[0]["sukupuoli"].ToString();
+                            Application.Current.Properties["user_id"] = dataSet.Tables[0].Rows[0]["id"].ToString();
                             Order order_page = new Order();
-                            order_page.user_name.Text = Application.Current.Properties["Logged_username"].ToString();
                             order_page.Show();
                             Close();
                         }

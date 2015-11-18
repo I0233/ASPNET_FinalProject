@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen"
         Icon="Images/login-icon.png">
   <Window.Background>
-    <ImageBrush ImageSource="images\login_tausta.jpg"/>
+    <ImageBrush ImageSource="Images/sovellus_taustakuva.jpg"/>
   </Window.Background>
   <Grid Width="696" Height="401">
 
