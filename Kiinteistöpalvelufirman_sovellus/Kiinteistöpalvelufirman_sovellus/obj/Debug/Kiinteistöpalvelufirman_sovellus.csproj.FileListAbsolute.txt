@@ -23,3 +23,5 @@ C:\Users\Ali\Documents\Visual Studio 2013\Projects\Kiinteistöpalvelufirman_sove
 C:\Users\Ali\Documents\Visual Studio 2013\Projects\Kiinteistöpalvelufirman_sovellus\Kiinteistöpalvelufirman_sovellus\obj\Debug\Order.g.cs
 C:\Users\Ali\Documents\Visual Studio 2013\Projects\Kiinteistöpalvelufirman_sovellus\Kiinteistöpalvelufirman_sovellus\obj\Debug\Confrmation.baml
 C:\Users\Ali\Documents\Visual Studio 2013\Projects\Kiinteistöpalvelufirman_sovellus\Kiinteistöpalvelufirman_sovellus\obj\Debug\Confrmation.g.cs
+C:\Users\Ali\Documents\Visual Studio 2013\Projects\Kiinteistöpalvelufirman_sovellus\Kiinteistöpalvelufirman_sovellus\obj\Debug\Orderlist.baml
+C:\Users\Ali\Documents\Visual Studio 2013\Projects\Kiinteistöpalvelufirman_sovellus\Kiinteistöpalvelufirman_sovellus\obj\Debug\Orderlist.g.cs

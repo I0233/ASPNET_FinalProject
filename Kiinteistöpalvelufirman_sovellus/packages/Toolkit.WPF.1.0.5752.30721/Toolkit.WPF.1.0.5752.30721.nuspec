@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Toolkit.WPF</id>
+    <version>1.0.5752.30721</version>
+    <title>Toolkit.WPF</title>
+    <authors>Cybermap</authors>
+    <owners>Cybermap</owners>
+    <iconUrl>http://nuget.cybermap.pt/m.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>WPF Set of controls</description>
+    <releaseNotes />
+    <copyright>Copyright Cybermap 2014</copyright>
+    <tags>Cybermap Toolkit WPF</tags>
+  </metadata>
+</package>

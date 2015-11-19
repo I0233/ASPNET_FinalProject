@@ -147,21 +147,21 @@ namespace Kiinteistöpalvelufirman_sovellus
                                 MySqlCommand cmd2 = new MySqlCommand("Update Asiakkaat SET sahkoposti='" + txtEmail.Text + "', etunimi='" + txtFName.Text + "', sukunimi='" + txtLName.Text + "', salasana='" + txtPassword.Password + "', puhelinnumero='" + txtPhonenumber.Text + "' WHERE id='"+ Application.Current.Properties["user_id"].ToString() +"'", conn);
                                 cmd2.CommandType = CommandType.Text;
                                 cmd2.ExecuteNonQuery();
-                                successmessage.Text = "Käyttäjän tiedot ovat päivitetty onnistuneesti.";
+                                successmessage.Text = "Käyttäjän tiedot on päivitetty onnistuneesti.";
                                 conn.Close();
 
                             }
                             catch (Exception ex)
                             {
 
-                                errormessage.Text = "Käyttäjän tiedot ei voitu hakea. Virhe: " + ex.Message;
+                                errormessage.Text = "Käyttäjän tietoja ei voitu hakea. Virhe: " + ex.Message;
                             }
                         }
                     }
                 }
                 else
                 {
-                    errormessage.Text = "Täytä puuttuvat tiedot päivittäksesi käyttäjäntiedot.";
+                    errormessage.Text = "Täytä puuttuvat tiedot päivittääksesi käyttäjäntiedot.";
                 }
             }
         }

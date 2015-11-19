@@ -150,7 +150,7 @@ namespace Kiinteistöpalvelufirman_sovellus
                 OrderForm.service = cmb_palvelut.SelectedItem.ToString();
                 OrderForm.flatType = radioButton_value;
                 Next.Visibility = Visibility.Visible;
-                successmessage.Text = "Palvelu on tilattu onnistuneesti. Ole hyvä ja siirry seuraavalle sivulle vahvistaksesi palvelutilauksen ";
+                successmessage.Text = "Palvelu on tilattu onnistuneesti. Ole hyvä ja siirry seuraavalle sivulle vahvistaksesi palvelutilauksen.";
                 
             }
             else
@@ -211,7 +211,9 @@ namespace Kiinteistöpalvelufirman_sovellus
 
         private void GetOrders_Click(object sender, RoutedEventArgs e)
         {
-
+            Orderlist orderlist = new Orderlist();
+            orderlist.Show();
+            Close();
         }
     }
 }

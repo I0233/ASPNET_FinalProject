@@ -46,8 +46,8 @@
     <Button Style="{DynamicResource NoChromeButton}" Click="Logout_Click" Margin="645,5,20,467" RenderTransformOrigin="-0.095,1.286" ToolTip="Kirjaudu ulos" Cursor="Hand">
       <Image  Source="Images/logout-icon.png" Height="27" Width="25" RenderTransformOrigin="1.6,0.333"/>
     </Button>
-    <TextBlock Height="23" HorizontalAlignment="Left" Text="Vahvistaminen" VerticalAlignment="Top" Width="170"  FontSize="20" FontStretch="ExtraCondensed" FontWeight="Bold" Margin="242,24,0,0"/>
     <TextBlock Height="23" VerticalAlignment="Top" FontSize="13" Margin="618,47,0,0" RenderTransformOrigin="1.4,0.391">Kirjaudu Ulos</TextBlock>
+    <TextBlock Height="23" HorizontalAlignment="Left" Text="Vahvistaminen" VerticalAlignment="Top" Width="170"  FontSize="20" FontStretch="ExtraCondensed" FontWeight="Bold" Margin="242,24,0,0"/>
     <TextBlock Height="23" HorizontalAlignment="Left" TextDecorations="Underline" Margin="10,86,0,0" Name="textBlockHeading" Text="Tilauksen vahvistus" VerticalAlignment="Top" Width="169"  FontSize="17" FontStretch="ExtraCondensed" FontWeight="Bold" RenderTransformOrigin="0.479,-0.783"/>
     <TextBlock Height="41" HorizontalAlignment="Left"  Text="Kiitos tilauksestanne. Ole hyvä ja varmista tilauksesi tiedot ennen vahvistamista.&#10;Varauksenne tiedot: " VerticalAlignment="Top" Width="461"  FontSize="13" FontStretch="ExtraCondensed" Margin="9,166,0,0" />
     <Image Source="Images/worker-happy.jpg" Margin="151,109,479,359" RenderTransformOrigin="0.515,-0.038"/>

@@ -22,6 +22,9 @@ namespace Kiinteistöpalvelufirman_sovellus
     /// </summary>
     public partial class Confrmation : Window
     {
+        string connStr = Kiinteistöpalvelufirman_sovellus.Properties.Settings.Default.Tietokanta;
+        MySqlCommand cmd;
+        Registration register_form = new Registration();
         public Confrmation()
         {
             // Manually alter window height and width
@@ -48,24 +51,41 @@ namespace Kiinteistöpalvelufirman_sovellus
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
+            Order order_form = new Order();
+            register_form.Gender_grid.Visibility = Visibility.Hidden;
+            register_form.Title = "Muokkaamislomake";
+            register_form.Icon = new BitmapImage(new Uri("pack://application:,,,/Images/red-edit-icon.png"));
+            register_form.textBlockHeading.Text = "Muokkaaminen";
+            register_form.header2.Text = "Muokkaa alla olevat tiedot päivittäksesi käyttäjän tiedot";
+            register_form.Cancel.Content = "Takaisin";
+            register_form.Submit.Content = "Tallenna";
+            register_form.Cancel.Click += this.Back_in_editting_form;
+            register_form.Cancel.OnApplyTemplate();
+            this.GetUserData();
+            register_form.Show();
+            Close();
+        }
 
+        public void Back_in_editting_form(object sender, RoutedEventArgs e)
+        {
+            Confrmation confirmation_form = new Confrmation();
+            confirmation_form.Show();
         }
 
         private void Confirmation_Click(object sender, RoutedEventArgs e)
         {
-            string connStr = Kiinteistöpalvelufirman_sovellus.Properties.Settings.Default.Tietokanta;
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
                 try
                 {
                     conn.Open();
-                    MySqlCommand cmd = new MySqlCommand("INSERT INTO Tilauslomake (asiakas_id,käyntiosoite,postinumero_toimipaikka,asunnontyyppi,laskutusosoite,palvelut,kommentti,tilauspvm) values((SELECT id From Asiakkaat WHERE sahkoposti='" + Application.Current.Properties["user_email"].ToString() + "'),'" + txtAddress.Text + "','" + txtPostalCode.Text + "','" + txtFlatType.Text + "','" + txtBillingAddress.Text + "', '" + txtService.Text + "','" + txtComment.Text + "', '" + txtPVM.Text + "')", conn);
+                    cmd = new MySqlCommand("INSERT INTO Tilauslomake (asiakas_id,käyntiosoite,postinumero_toimipaikka,asunnontyyppi,laskutusosoite,palvelut,kommentti,tilauspvm) values((SELECT id From Asiakkaat WHERE sahkoposti='" + Application.Current.Properties["user_email"].ToString() + "'),'" + txtAddress.Text + "','" + txtPostalCode.Text + "','" + txtFlatType.Text + "','" + txtBillingAddress.Text + "', '" + txtService.Text + "','" + txtComment.Text + "', '" + txtPVM.Text + "')", conn);
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
                     conn.Close();
 
                     //Vahvistus popup
-                    MessageBoxResult result = MessageBox.Show(this, "Tilauksesi on lähtetty onnistuneesti käsittelyyn. Paina OK päästäksesi selailemaan sinun olemassa olevia tilauksia.",
+                    MessageBoxResult result = MessageBox.Show(this, "Tilauksesi on lähetetty onnistuneesti käsittelyyn. Paina OK päästäksesi selailemaan Teidän tilauksia.",
                     "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     if (result == MessageBoxResult.OK)
                     {
@@ -115,8 +135,51 @@ namespace Kiinteistöpalvelufirman_sovellus
             Close();
         }
 
+        public void GetUserData()
+        {
+
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM Asiakkaat WHERE id='" + Application.Current.Properties["user_id"].ToString() + "'", conn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet);
+                    register_form.txtEmail.Text = dataSet.Tables[0].Rows[0]["sahkoposti"].ToString();
+                    register_form.txtFName.Text = dataSet.Tables[0].Rows[0]["etunimi"].ToString();
+                    register_form.txtLName.Text = dataSet.Tables[0].Rows[0]["sukunimi"].ToString();
+                    register_form.txtPassword.Password = dataSet.Tables[0].Rows[0]["salasana"].ToString();
+                    register_form.txtPhonenumber.Text = dataSet.Tables[0].Rows[0]["puhelinnumero"].ToString();
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Käyttäjän tiedot ei voitu hakea. Virhe: " + ex.Message, "Virhe", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
         private void GetOrder()
         {
+            var man_uri = new Uri("pack://application:,,,/Images/gender-man.png");
+            var woman_uri = new Uri("pack://application:,,,/Images/gender-woman.png");
+            var man_icon = new BitmapImage(man_uri);
+            var woman_icon = new BitmapImage(woman_uri);
+            user_name.Text = Application.Current.Properties["Logged_username"].ToString();
+            string gender = Application.Current.Properties["Gender"].ToString();
+            if (gender == "Mies")
+            {
+                user_icon.Source = man_icon;
+            }
+            else
+            {
+                user_icon.Source = woman_icon;
+            }
             txtUserName.Text = Application.Current.Properties["Logged_username"].ToString();
             txtPVM.Text = DateTime.Today.ToShortDateString();
             txtAddress.Text = OrderForm.address;

@@ -102,6 +102,9 @@
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
     <Compile Include="OrderForm.cs" />
+    <Compile Include="Orderlist.xaml.cs">
+      <DependentUpon>Orderlist.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Order.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Orderlist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

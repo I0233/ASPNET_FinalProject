@@ -69,7 +69,7 @@
       <ComboBox x:Name="cmb_palvelut" Loaded="cmb_palvelut_Loaded" HorizontalAlignment="Left" Width="242" Margin="181,178,0,81" RenderTransformOrigin="0.554,-0.31" />
       <Button Content="Tilaa" HorizontalAlignment="Left" x:Name="Submit" Width="70" Click="Submit_Click" Cursor="Hand" Margin="446,288,0,-29" />
       <Button Content="Tyhjennä kentät" Height="24" HorizontalAlignment="Left" x:Name="Rest" VerticalAlignment="Top" Width="106" Click="Rest_Click" Cursor="Hand" Margin="317,288,0,-30" RenderTransformOrigin="0.491,0.739" />
-      <Button Content="Selaa tilaukset" HorizontalAlignment="Left" x:Name="GetOrders" Width="106" Click="GetOrders_Click" Cursor="Hand" Margin="194,288,0,-31" />
+      <Button Content="Selaa tilauksia" HorizontalAlignment="Left" x:Name="GetOrders" Width="106" Click="GetOrders_Click" Cursor="Hand" Margin="194,288,0,-31" />
       <Button Content="Seuraava" HorizontalAlignment="Left" x:Name="Next" Width="70" Click="Next_Click" Cursor="Hand" Margin="591,289,-88,-30" Visibility="Hidden" />
       <TextBlock Height="42" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="508" Margin="10,317,0,-77"  OpacityMask="Crimson" Foreground="#FFE5572C" TextWrapping="Wrap" />
       <TextBlock Height="42" HorizontalAlignment="Left" x:Name ="successmessage" VerticalAlignment="Top" Width="508" Margin="10,317,0,-77"  OpacityMask="Crimson" Foreground="Green" TextWrapping="Wrap" />
