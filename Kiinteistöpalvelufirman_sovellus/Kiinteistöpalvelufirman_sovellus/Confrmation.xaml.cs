@@ -79,17 +79,19 @@ namespace Kiinteistöpalvelufirman_sovellus
                 try
                 {
                     conn.Open();
-                    cmd = new MySqlCommand("INSERT INTO Tilauslomake (asiakas_id,käyntiosoite,postinumero_toimipaikka,asunnontyyppi,laskutusosoite,palvelut,kommentti,tilauspvm) values((SELECT id From Asiakkaat WHERE sahkoposti='" + Application.Current.Properties["user_email"].ToString() + "'),'" + txtAddress.Text + "','" + txtPostalCode.Text + "','" + txtFlatType.Text + "','" + txtBillingAddress.Text + "', '" + txtService.Text + "','" + txtComment.Text + "', '" + txtPVM.Text + "')", conn);
+                    cmd = new MySqlCommand("INSERT INTO Tilauslomake (asiakas_id,kayntiosoite,postinumero_toimipaikka,asunnontyyppi,laskutusosoite,palvelut,kommentti,tilauspvm) values((SELECT id From Asiakkaat WHERE sahkoposti='" + Application.Current.Properties["user_email"].ToString() + "'),'" + txtAddress.Text + "','" + txtPostalCode.Text + "','" + txtFlatType.Text + "','" + txtBillingAddress.Text + "', '" + txtService.Text + "','" + txtComment.Text + "', '" + txtPVM.Text + "')", conn);
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
                     conn.Close();
 
                     //Vahvistus popup
                     MessageBoxResult result = MessageBox.Show(this, "Tilauksesi on lähetetty onnistuneesti käsittelyyn. Paina OK päästäksesi selailemaan Teidän tilauksia.",
-                    "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    "Vahvistus", MessageBoxButton.OK, MessageBoxImage.Information);
                     if (result == MessageBoxResult.OK)
                     {
-
+                        Orderlist order_list = new Orderlist();
+                        order_list.Show();
+                        Close();
                     }
                 }
                 catch (Exception ex)

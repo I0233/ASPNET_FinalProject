@@ -88,7 +88,7 @@ namespace Kiinteistöpalvelufirman_sovellus
                         adapter.Fill(dataSet);
                         if (count == 0)
                         {
-                            errormessage.Text = "Tämä käyttäjä ei löytynyt tietokannastamme. Ole hyvä ja rekisteröidy käyttäjäksi.";
+                            errormessage.Text = "Tämä käyttäjä ei löytynyt tietokannastamme. Ole hyvä ja tarkista syöttämiäsi tiedot tai rekisteröidy tietokantaamme käyttäjäksi.";
                         } else {
                             Application.Current.Properties["Logged_username"] = dataSet.Tables[0].Rows[0]["etunimi"].ToString() + " " + dataSet.Tables[0].Rows[0]["sukunimi"].ToString();
                             Application.Current.Properties["user_email"] = dataSet.Tables[0].Rows[0]["sahkoposti"].ToString();

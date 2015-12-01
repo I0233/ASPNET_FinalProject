@@ -24,8 +24,6 @@ namespace Kiinteistöpalvelufirman_sovellus
     {
         string connStr = Kiinteistöpalvelufirman_sovellus.Properties.Settings.Default.Tietokanta;
         Registration register_form = new Registration();
-        bool isInsertMode = false;
-        bool isBeingEdited = false;
 
         public Orderlist()
         {
@@ -42,18 +40,19 @@ namespace Kiinteistöpalvelufirman_sovellus
             this.SizeToContent = SizeToContent.WidthAndHeight;
             InitializeComponent();
             Window_Loaded();
-            dg_Orders.DataContext = GET_ORDERS().DefaultView;
-           
+            Get_OrderStatus();
         }
 
         private void Window_Loaded()
         {
+            // Käyttäjännimi sekä sen ikoni
             var man_uri = new Uri("pack://application:,,,/Images/gender-man.png");
             var woman_uri = new Uri("pack://application:,,,/Images/gender-woman.png");
             var man_icon = new BitmapImage(man_uri);
             var woman_icon = new BitmapImage(woman_uri);
             user_name.Text = Application.Current.Properties["Logged_username"].ToString();
             string gender = Application.Current.Properties["Gender"].ToString();
+            
             if (gender == "Mies")
             {
                 user_icon.Source = man_icon;
@@ -64,15 +63,80 @@ namespace Kiinteistöpalvelufirman_sovellus
             }
         }
 
-        private void dgEmp_AddingNewItem(object sender, AddingNewItemEventArgs e)
+        private void Get_OrderStatus()
         {
-            isInsertMode = true;
+
+            foreach (DataRow row in GET_ORDERS().Rows)
+            {
+                string accept_date = row["hyvaksymispvm"].ToString();
+                string[] value = new string[4];
+                value[0] = "Odottaa";
+                value[1] = "Hyväksytty";
+                value[2] = "Aloitettu";
+                value[3] = "Valmis";
+
+                if (accept_date == string.Empty)
+                {
+                    row["tila"] = value[0];
+                    txtStatus.Foreground = Brushes.Yellow;
+                }
+                else if (accept_date != string.Empty )
+                {
+                    row["tila"] += value[1];
+                    txtStatus.Foreground = Brushes.Blue;
+                }
+                else if ((row["aloituspvm"].ToString() != DateTime.Today.ToShortDateString()) && row["aloituspvm"].ToString() != string.Empty)
+                {
+                    row["tila"] += value[2];
+                    txtStatus.Foreground = Brushes.Green;
+                }
+                else
+                {
+                    row["tila"] += value[3];
+                    txtStatus.Foreground = Brushes.Red;
+                }
+            }
+            GET_ORDERS().AcceptChanges();
+            dg_Orders.DataContext = GET_ORDERS().DefaultView;
         }
 
-        private void dgEmp_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            isBeingEdited = true;
+            MessageBoxResult result = MessageBox.Show(this, "Oletko varma, että haluat poistaa tilauksesi?",
+            "Huomio", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                DataRowView drv = (DataRowView)dg_Orders.SelectedItem;
+                string id = drv.Row[0].ToString();
+                string query = "DELETE FROM Tilauslomake WHERE tilaus_id = @RowID";
+                MySqlCommand deleteRecord = new MySqlCommand();
+                MySqlConnection conn = new MySqlConnection(connStr);
+                deleteRecord.Connection = conn;
+                deleteRecord.CommandType = CommandType.Text;
+                deleteRecord.CommandText = query;
+
+                MySqlParameter RowParameter = new MySqlParameter();
+                RowParameter.ParameterName = "@RowID";
+                RowParameter.MySqlDbType = MySqlDbType.Int32;
+                RowParameter.IsNullable = false;
+                RowParameter.Value = id;
+                deleteRecord.Parameters.Add(RowParameter);
+                deleteRecord.Connection.Open();
+                deleteRecord.ExecuteNonQuery();
+                deleteRecord.Connection.Close();
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                MySqlCommand cmd = new MySqlCommand(query);
+                adapter.SelectCommand = cmd;
+                DataSet dataSet = new DataSet();
+                dataSet.GetChanges();
+                dg_Orders.DataContext = GET_ORDERS().DefaultView;
+            }
+            else
+            {
+                dg_Orders.DataContext = GET_ORDERS().DefaultView;
+            }
         }
+
 
         public static DataTable GET_ORDERS()
         {
@@ -165,5 +229,6 @@ namespace Kiinteistöpalvelufirman_sovellus
             order_form.Show();
             Close();
         }
+
     }
 }

@@ -4,12 +4,10 @@
         Title="Tilaukset" Height="Auto" Width="Auto"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
-        Icon="Images/order_list-icon.png"
-        ResizeMode="CanResizeWithGrip">
+        Icon="Images/order_list-icon.png">
   <Window.Background>
     <ImageBrush ImageSource="Images\sovellus_taustakuva.jpg"/>
   </Window.Background>
-
   <Window.Resources>
     <Style x:Key="NoChromeButton" TargetType="{x:Type Button}">
       <Setter Property="Background" Value="Transparent"/>
@@ -35,35 +33,41 @@
       </Setter>
     </Style>
   </Window.Resources>
-  <Grid x:Name="LayoutRoot" Height="520" Margin="10,0,0,0" HorizontalAlignment="Left" Width="1268">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="297"/>
-      <RowDefinition/>
-    </Grid.RowDefinitions>
-    <Button Style="{DynamicResource NoChromeButton}" Click="Edit_Click" Margin="0,10,1219,245" Height="42" RenderTransformOrigin="-0.095,1.286" ToolTip="Klikkaamalla kuvaan pääset muokkamaan omia tietojasi" Cursor="Hand">
+  <Grid x:Name="LayoutRoot">
+    <Button Style="{DynamicResource NoChromeButton}" Click="Edit_Click" VerticalAlignment="Top" HorizontalAlignment="left" Margin="22,15,0,0" Height="42" ToolTip="Klikkaamalla kuvaan pääset muokkamaan omia tietojasi" Cursor="Hand" Width="34" RenderTransformOrigin="0.5,0.5">
       <Image x:Name="user_icon" Source="Images/gender-man.png"/>
     </Button>
-    <TextBlock x:Name="user_name" Height="29" VerticalAlignment="Top"  FontSize="13" FontStretch="ExtraCondensed" Margin="10,52,0,0" HorizontalAlignment="Left" Width="290">xxxx</TextBlock>
-    <Button Style="{DynamicResource NoChromeButton}" Click="Logout_Click" Margin="1219,10,10,239" RenderTransformOrigin="-0.095,1.286" ToolTip="Kirjaudu ulos" Cursor="Hand">
-      <Image  Source="Images/logout-icon.png" Height="27" Width="25" RenderTransformOrigin="1.6,0.333"/>
+    <TextBlock x:Name="user_name" Height="29" VerticalAlignment="Top"  FontSize="13" FontStretch="ExtraCondensed" Margin="10,57,0,0" HorizontalAlignment="Left" Width="290">xxxx</TextBlock>
+    <Button Style="{DynamicResource NoChromeButton}" VerticalAlignment="Top" HorizontalAlignment="Right"  Click="Logout_Click" Margin="974,18,10,454" RenderTransformOrigin="-0.095,1.286" ToolTip="Kirjaudu ulos" Cursor="Hand">
+      <Image  Source="Images/logout-icon.png" Height="27" Width="43" RenderTransformOrigin="1.6,0.333"/>
     </Button>
-    <TextBlock Height="25" VerticalAlignment="Top" FontSize="13" Margin="1190,52,0,0" >Kirjaudu Ulos</TextBlock>
-    <TextBlock Height="23" HorizontalAlignment="Left" Margin="15,101,0,0" Name="textBlockHeading" Text="Tilaukset" VerticalAlignment="Top" Width="141"  FontSize="20" FontStretch="ExtraCondensed" FontWeight="Bold"/>
-    <Button Content="Uusi tilaus" HorizontalAlignment="Left" x:Name="Submit" Width="95" Click="NewOrder_Click" Cursor="Hand" Margin="576,189,0,10" Grid.Row="1" />
-    <DataGrid x:Name="dg_Orders" Height="308" Margin="15,146,0,0" VerticalAlignment="Top" AutoGenerateColumns="False"
-     ItemsSource="{Binding}" BeginningEdit="dgEmp_BeginningEdit" Grid.RowSpan="2" HorizontalAlignment="Left" Width="1259">
+    <TextBlock Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="13" Margin="0,52,0,0" RenderTransformOrigin="1.4,0.391" Width="80">Kirjaudu Ulos</TextBlock>
+
+    <TextBlock Height="24" HorizontalAlignment="Left" Margin="10,136,0,0" Name="textBlockHeading" Text="Tilaukset" VerticalAlignment="Top" Width="141"  FontSize="20" FontStretch="ExtraCondensed" FontWeight="Bold"/>
+    <Button Content="Uusi tilaus" x:Name="Submit" VerticalAlignment="Bottom"  HorizontalAlignment="Center" Click="NewOrder_Click" Cursor="Hand" Margin="444,0,485,10" Height="35" Width="100" />
+
+    <DataGrid x:Name="dg_Orders" Margin="10,177,10,70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="False"
+     ItemsSource="{Binding}" SelectedItem="{Binding SelectedResult}" VerticalScrollBarVisibility="Auto" CanUserDeleteRows="True" CanUserAddRows="false" >
       <DataGrid.Columns>
-        <DataGridTextColumn Binding="{Binding tilauspvm, NotifyOnTargetUpdated=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Header="Tilauspäivämäärä" IsReadOnly="True" />
-        <DataGridTextColumn Binding="{Binding palvelut, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Header="Palvelu"/>
-        <DataGridTextColumn Binding="{Binding kayntiosoite, NotifyOnSourceUpdated=True, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="150" Header="Käyntiosoite"/>
-        <DataGridTextColumn Binding="{Binding asunnontyyppi, NotifyOnTargetUpdated=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" Header="Asunnontyyppi"/>
-        <DataGridTextColumn Binding="{Binding laskutusosoite, NotifyOnTargetUpdated=True,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" Header="Laskutusosoite"/>
-        <DataGridTextColumn Binding="{Binding aloituspvm, NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="110" IsReadOnly="True" Header="Aloituspäivämäärä"/>
-        <DataGridTextColumn Binding="{Binding hyvaksymispvm, NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="100" IsReadOnly="True" Header="Hyväksymispvm"/>
-        <DataGridTextColumn Binding="{Binding Valmistumispvm, NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="100" IsReadOnly="True" Header="Valmistumispäivämäärä"/>
-        <DataGridTextColumn Binding="{Binding tuntimaara, NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="75" IsReadOnly="True" Header="Tuntimäärä"/>
-        <DataGridTextColumn Binding="{Binding selostus, NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="130" IsReadOnly="True" Header="Selostus"/>
-        <DataGridTextColumn Binding="{Binding tila, NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="110" IsReadOnly="True" Header="Käsittelyn Tila"/>
+        <DataGridTextColumn Binding="{Binding tilaus_id}" Visibility="Hidden" Header="ID" />
+        <DataGridTextColumn Binding="{Binding tilauspvm, Mode=TwoWay}"  Width="Auto" Header="Tilauspäivämäärä" IsReadOnly="True" />
+        <DataGridTextColumn Binding="{Binding palvelut,  Mode=TwoWay}" IsReadOnly="True" Width="Auto" Header="Palvelu"/>
+        <DataGridTextColumn Binding="{Binding kayntiosoite, Mode=TwoWay}" IsReadOnly="True" Width="Auto" Header="Käyntiosoite"/>
+        <DataGridTextColumn Binding="{Binding asunnontyyppi, Mode=TwoWay}" IsReadOnly="True" Width="Auto" Header="Asunnontyyppi"/>
+        <DataGridTextColumn Binding="{Binding laskutusosoite, Mode=TwoWay}" IsReadOnly="True" Width="Auto" Header="Laskutusosoite"/>
+        <DataGridTextColumn Binding="{Binding hyvaksymispvm, Mode=TwoWay}" Width="Auto" IsReadOnly="True" Header="Hyväksymispvm"/>
+        <DataGridTextColumn Binding="{Binding aloituspvm, Mode=TwoWay}" Width="Auto" IsReadOnly="True" Header="Aloituspäivämäärä"/>
+        <DataGridTextColumn Binding="{Binding Valmistumispvm, Mode=TwoWay}" Width="Auto" IsReadOnly="True" Header="Valmistumispäivämäärä"/>
+        <DataGridTextColumn Binding="{Binding tuntimaara, Mode=TwoWay}" Width="Auto" IsReadOnly="True" Header="Tuntimäärä"/>
+        <DataGridTextColumn Binding="{Binding selostus, Mode=TwoWay}" Width="Auto" IsReadOnly="True" Header="Selostus"/>
+        <DataGridTextColumn Binding="{Binding tila, Mode=TwoWay}" x:Name="txtStatus" Width="Auto" IsReadOnly="True" Header="Käsittelyn tila"/>
+        <DataGridTemplateColumn Header="Poista tilaus" IsReadOnly="True" Width="Auto">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button Content="Poista" Command="Delete" x:Name="Delete_button" Click="btnDelete_Click" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
       </DataGrid.Columns>
     </DataGrid>
   </Grid>

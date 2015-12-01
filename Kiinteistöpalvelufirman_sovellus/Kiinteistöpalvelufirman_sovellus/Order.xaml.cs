@@ -141,7 +141,7 @@ namespace Kiinteistöpalvelufirman_sovellus
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            if (txtAddress.Text != "" && txtBillingAddress.Text != "" && txtPostalCode.Text != "" && (Type1.IsChecked != true || Type2.IsChecked != true || Type3.IsChecked != true || Type4.IsChecked != true)  )
+            if (txtAddress.Text != "" && txtBillingAddress.Text != "" && txtPostalCode.Text != "" && (Type1.IsChecked == true || Type2.IsChecked == true || Type3.IsChecked == true || Type4.IsChecked == true)  )
             {
                 OrderForm.address = txtAddress.Text;
                 OrderForm.billingAddress = txtBillingAddress.Text;
