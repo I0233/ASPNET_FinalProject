@@ -47,7 +47,7 @@
     <Button Content="Uusi tilaus" x:Name="Submit" VerticalAlignment="Bottom"  HorizontalAlignment="Center" Click="NewOrder_Click" Cursor="Hand" Margin="444,0,485,10" Height="35" Width="100" />
 
     <DataGrid x:Name="dg_Orders" Margin="10,177,10,70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="False"
-     ItemsSource="{Binding}" SelectedItem="{Binding SelectedResult}" VerticalScrollBarVisibility="Auto" CanUserDeleteRows="True" CanUserAddRows="false" >
+     ItemsSource="{Binding}"  VerticalScrollBarVisibility="Auto" CanUserDeleteRows="True" CanUserAddRows="false" >
       <DataGrid.Columns>
         <DataGridTextColumn Binding="{Binding tilaus_id}" Visibility="Hidden" Header="ID" />
         <DataGridTextColumn Binding="{Binding tilauspvm, Mode=TwoWay}"  Width="Auto" Header="Tilauspäivämäärä" IsReadOnly="True" />

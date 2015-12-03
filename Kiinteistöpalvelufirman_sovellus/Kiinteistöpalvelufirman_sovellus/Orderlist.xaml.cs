@@ -40,7 +40,10 @@ namespace Kiinteistöpalvelufirman_sovellus
             this.SizeToContent = SizeToContent.WidthAndHeight;
             InitializeComponent();
             Window_Loaded();
+            this.DataContext = GET_ORDERS().DefaultView;
             Get_OrderStatus();
+            
+
         }
 
         private void Window_Loaded()
@@ -82,22 +85,20 @@ namespace Kiinteistöpalvelufirman_sovellus
                 }
                 else if (accept_date != string.Empty )
                 {
-                    row["tila"] += value[1];
+                    row["tila"] = value[1];
                     txtStatus.Foreground = Brushes.Blue;
                 }
                 else if ((row["aloituspvm"].ToString() != DateTime.Today.ToShortDateString()) && row["aloituspvm"].ToString() != string.Empty)
                 {
-                    row["tila"] += value[2];
+                    row["tila"] = value[2];
                     txtStatus.Foreground = Brushes.Green;
                 }
                 else
                 {
-                    row["tila"] += value[3];
+                    row["tila"] = value[3];
                     txtStatus.Foreground = Brushes.Red;
                 }
             }
-            GET_ORDERS().AcceptChanges();
-            dg_Orders.DataContext = GET_ORDERS().DefaultView;
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)

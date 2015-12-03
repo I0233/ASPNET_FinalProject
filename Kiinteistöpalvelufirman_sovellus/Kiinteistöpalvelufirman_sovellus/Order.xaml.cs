@@ -150,6 +150,7 @@ namespace Kiinteistöpalvelufirman_sovellus
                 OrderForm.service = cmb_palvelut.SelectedItem.ToString();
                 OrderForm.flatType = radioButton_value;
                 Next.Visibility = Visibility.Visible;
+                errormessage.Visibility = Visibility.Hidden;
                 successmessage.Text = "Palvelu on tilattu onnistuneesti. Ole hyvä ja siirry seuraavalle sivulle vahvistaksesi palvelutilauksen.";
                 
             }
